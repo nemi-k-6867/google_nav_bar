@@ -36,6 +36,9 @@ class GNav extends StatefulWidget {
     this.mainAxisAlignment = MainAxisAlignment.spaceBetween,
     this.style = GnavStyle.google,
     this.textSize,
+    this.borderRadius,
+    this.border,
+    this.clipBehavior = Clip.none
   }) : super(key: key);
 
   final List<GButton> tabs;
@@ -64,6 +67,9 @@ class GNav extends StatefulWidget {
   final MainAxisAlignment mainAxisAlignment;
   final GnavStyle? style;
   final double? textSize;
+  final BorderRadius? borderRadius;
+   final BoxBorder? border;
+   final Clip clipBehavior;
 
   @override
   _GNavState createState() => _GNavState();
@@ -90,7 +96,12 @@ class _GNavState extends State<GNav> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        color: widget.backgroundColor,
+        clipBehavior: widget.clipBehavior,
+        decoration: BoxDecoration(
+          borderRadius: widget.borderRadius,
+          border: widget.border,
+          color: widget.backgroundColor,
+        ),
         child: Row(
             mainAxisAlignment: widget.mainAxisAlignment,
             children: widget.tabs
